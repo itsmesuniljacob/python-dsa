@@ -1,10 +1,12 @@
 class Node:
   def __init__(self, data):
+    # print('In Node init')
     self.data = data
     self.next = None
 
 class LinkedList:
   def __init__(self):
+    # print('In LL Init')
     self.head = None
   
   def print_list(self):
@@ -39,6 +41,25 @@ class LinkedList:
     new_node.next = prev_node.next
     prev_node.next = new_node
 
+  def delete_node(self,key):
+    cur_node = self.head
+
+    if cur_node and cur_node.data == key:
+      self.head = cur_node.next
+      cur_node = None
+      return
+
+    prev_node = None
+    while cur_node and cur_node.data != key:
+      prev_node = cur_node
+      cur_node = cur_node.next
+
+    if cur_node is None:
+      return
+    
+    prev_node.next = cur_node.next
+    cur_node = None
+
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
@@ -46,7 +67,10 @@ llist.append("C")
 llist.append("D")
 
 llist.print_list()
-# print('-------------------')
+print('-------------------')
 # llist.prepend("X")
-llist.insert_after_node(llist.head.next, "D")
-llist.print_list()  
+# llist.insert_after_node(llist.head.next, "D")
+# llist.print_list()
+
+llist.delete_node('B') 
+llist.print_list() 
