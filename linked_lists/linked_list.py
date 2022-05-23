@@ -60,6 +60,28 @@ class LinkedList:
     prev_node.next = cur_node.next
     cur_node = None
 
+  def delete_node_at_pos(self,pos):
+    if self.head:
+      cur_node = self.head
+      if pos == 0:
+        self.head = cur_node.next
+        cur_node = None
+        return
+      
+      prev_node = None
+      count = 0
+      while cur_node and count != pos:
+        prev_node = cur_node
+        cur_node  = cur_node.next
+        count += 1
+
+      if cur_node is None:
+        return
+      
+      prev_node.next = cur_node.next
+      cur_node = None
+
+
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
@@ -72,5 +94,6 @@ print('-------------------')
 # llist.insert_after_node(llist.head.next, "D")
 # llist.print_list()
 
-llist.delete_node('B') 
+# llist.delete_node('B') 
+llist.delete_node_at_pos(2)
 llist.print_list() 
