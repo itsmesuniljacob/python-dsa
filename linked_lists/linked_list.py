@@ -90,7 +90,61 @@ class LinkedList:
 
       return count
 
+  def swap_nodes(self,key1, key2):
+    if key1 == key2:
+      return
+    prev_1 = None
+    curr_1 = self.head
 
+    while curr_1 and curr_1.data != key1:
+      prev_1 = curr_1
+      curr_1 = curr_1.next
+
+    prev_2 = None
+    curr_2 = self.head
+    # print('Curr_1: ',curr_1.data,'Prev_1: ',prev_1.data)
+
+    while curr_2 and curr_2.data != key2:
+      prev_2 = curr_2
+      curr_2 = curr_2.next
+
+    # print('Curr_2: ',curr_2.data,'Prev_2: ',prev_2.data)
+
+    if not curr_1 and curr_2:  # if they don't exists ( curr_1 or curr_2 is None )
+      return
+
+    if prev_1:
+      prev_1.next = curr_2
+    else:
+      self.head = curr_2
+
+    if prev_2:
+      prev_2.next = curr_1
+    else:
+      self.head = curr_1
+
+    curr_1.next,curr_2.next = curr_2.next,curr_1.next
+
+
+# llist = LinkedList()
+# llist.append("A")
+# llist.append("B")
+# llist.append("C")
+# llist.append("D")
+
+# llist.print_list()
+# print('-------------------')
+# # llist.prepend("X")
+# # llist.insert_after_node(llist.head.next, "D")
+# # llist.print_list()
+
+# # llist.delete_node('B') 
+# llist.delete_node_at_pos(2)
+# llist.print_list()
+# print('-------------------')
+# print(llist.find_length())
+
+# Swap 
 
 llist = LinkedList()
 llist.append("A")
@@ -98,14 +152,17 @@ llist.append("B")
 llist.append("C")
 llist.append("D")
 
+print("Original List")
 llist.print_list()
-print('-------------------')
-# llist.prepend("X")
-# llist.insert_after_node(llist.head.next, "D")
-# llist.print_list()
 
-# llist.delete_node('B') 
-llist.delete_node_at_pos(2)
+llist.swap_nodes("B", "C")
+print("Swapping nodes B and C that are not head nodes")
 llist.print_list()
-print('-------------------')
-print(llist.find_length())
+
+llist.swap_nodes("A", "B")
+print("Swapping nodes A and B where key_1 is head node")
+llist.print_list()
+
+llist.swap_nodes("D", "B")
+print("Swapping nodes D and B where key_2 is head node")
+llist.print_list()
