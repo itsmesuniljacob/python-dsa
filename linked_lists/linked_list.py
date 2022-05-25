@@ -81,6 +81,16 @@ class LinkedList:
       prev_node.next = cur_node.next
       cur_node = None
 
+  def find_length(self):
+      cur_node = self.head
+      count = 0
+      while cur_node:
+        count+=1
+        cur_node = cur_node.next
+
+      return count
+
+
 
 llist = LinkedList()
 llist.append("A")
@@ -96,4 +106,6 @@ print('-------------------')
 
 # llist.delete_node('B') 
 llist.delete_node_at_pos(2)
-llist.print_list() 
+llist.print_list()
+print('-------------------')
+print(llist.find_length())
